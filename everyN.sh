@@ -1,4 +1,6 @@
 #!/bin/bash
+## CITE: https://linuxhint.com/cat-command-bash/
+## DESC: Documentation on the cat command
 sequence=$(cat)
 
 index=0
@@ -9,6 +11,8 @@ do
         N=$number
     else
         temp=$N
+        ## CITE: https://www.geeksforgeeks.org/expr-command-in-linux-with-examples/
+        ## DESC: Documentation on the expr command
         N=$(expr $number % $temp)
     fi
     index=$((index + 1))

@@ -14,17 +14,21 @@ done
 
 if [ $index -eq 1 ]
 then
-    echo $(dirname "$(which $program)")
+    ## CITE: https://www.diskinternals.com/linux-reader/bash-dirname/#:~:text=What%20is%20a%20bash%20dirname%20command%3F,where%20that%20file%20is%20saved.
+    ## DESC: Documentation on the dirname command
+    ## CITE: https://linuxize.com/post/linux-which-command/
+    ## DESC: Documentation on the which command
+    echo $(dirname $(which $program))
 else
-    res=$(which -a $program)
+    allplaces=$(which -a $program)
     index=0
-    for r in $res
+    for location in $allplaces
     do
         if [ $index -gt 0 ]
         then
-            echo "Shadows "$r
+            echo "Shadows "$location
         else
-            echo $(dirname $r)
+            echo $(dirname $location)
             index=$((index + 1))
         fi
     done
