@@ -1,21 +1,30 @@
 #!/bin/bash
-guess sequence
-N=2
+sequence=$(cat)
+
 index=0
 for number in "$@"
 do
-    index=$((index + 1))
-    if [ $index -eq 1 ]
+    if [ $index -eq 0 ]
     then
         N=$number
     else
         temp=$N
-        N=$(($number % $temp))
+        N=$(expr $number % $temp)
+    fi
+    index=$((index + 1))
 done
-#The order of the input is the tricky part
-for num in $(sequence)
+
+if [ $index -eq 0 ]
+then
+    N=2
+fi
+
+for num in $sequence
 do
-    if [ ($num % $N) -eq 0]
+    temp=$((num - 1))
+    mod=$(expr $temp % $N)
+    if [[ $mod -eq 0 ]]
     then
         echo $num
+    fi
 done

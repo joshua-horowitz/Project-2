@@ -1,9 +1,9 @@
 #!/bin/bash
-guess extensionFrom
-guess extensionTo
-guess directoryName
-files=../bash/*.sh
-for file in $files
+extensionFrom=$1
+extensionTo=$2
+directoryName=$3
+files=../$directoryName
+for file in $files.$extensionFrom
 do
-mv "$file" "$((basename $file ".$extensionFrom").$extensionTo)"
+mv "$file" "${file%$extensionFrom}$extensionTo"
 done
